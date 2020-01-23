@@ -49,7 +49,8 @@ def max_balanced(text):
             y = 0
 
     #Second infinite check
-    if error == 1 or result == string or is_balanced(string.split(result)[1] + string.split(result)[0]): result = 'Infinite'
+    if result:
+        if error == 1 or result == string or is_balanced(string.split(result)[1] + string.split(result)[0]): result = 'Infinite'
 
     return result
 
@@ -63,7 +64,9 @@ def test_max_balanced():
     assert max_balanced('()}[(x)]{') == 'Infinite'
     assert max_balanced('}[(x)]{()') == 'Infinite'
     assert max_balanced(']x}[x]') == '[x]'
+    assert max_balanced('xx}x({') == '{xx}x'
+    assert max_balanced(')x)x(x[')
 
 # The End
-s1 = '}[(x)]{())'
+s1 = 'xx}x({xxxxx'
 print(max_balanced(s1))
