@@ -49,18 +49,21 @@ def max_balanced(text):
             y = 0
 
     #Second infinite check
-    if error == 1 or result == string: result = 'Infinite'
+    if error == 1 or result == string or is_balanced(string.split(result)[1] + string.split(result)[0]): result = 'Infinite'
+
     return result
 
 #pytest
 def test_is_balanced():
-    assert is_balanced('{this[is]balanced(text)}') == True
-    assert is_balanced(']unba[lanced]') == False
+    assert is_balanced('{x[x]x(x)}') == True
+    assert is_balanced(']x[x]') == False
 
 def test_max_balanced():
-    assert max_balanced('{this[is]balanced(text)}') == 'Infinite'
-    assert max_balanced(']unba}[lanced]') == '[lanced]'
+    assert max_balanced('{x[x]x(x)}') == 'Infinite'
+    assert max_balanced('()}[(x)]{') == 'Infinite'
+    assert max_balanced('}[(x)]{()') == 'Infinite'
+    assert max_balanced(']x}[x]') == '[x]'
 
 # The End
-s1 = ']unba}[lanced]'
+s1 = '}[(x)]{())'
 print(max_balanced(s1))
